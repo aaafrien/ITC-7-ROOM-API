@@ -27,32 +27,32 @@ public class WeatherDetail extends AppCompatActivity {
 
         for (int value : textViewId) textViews.add(findViewById(value));
 
-        if (
-                getIntent().hasExtra("id") &&
-                        getIntent().hasExtra("nama") &&
-                        getIntent().hasExtra("coord") &&
-                        getIntent().hasExtra("main") &&
-                        getIntent().hasExtra("dt") &&
-                        getIntent().hasExtra("wind") &&
-                        getIntent().hasExtra("country") &&
-                        getIntent().hasExtra("rain") &&
-                        getIntent().hasExtra("snow") &&
-                        getIntent().hasExtra("clouds") &&
-                        getIntent().hasExtra("weather")
-        ) {
-            Log.d("Cek data", "Data isseo");
-            temp = getIntent().getStringExtra("main");
-            cuaca = getIntent().getStringExtra("weather");
-            tempat = getIntent().getStringExtra("nama");
-            country = getIntent().getStringExtra("country");
-        } else {
-            Log.d("Cek data", "Data gagal");
-        }
+        getData();
+        setData();
+    }
 
+    private void setData() {
         Log.d("Cek data", "Data di set");
-        textViews.get(0).setText(temp);
+        textViews.get(0).setText(String.valueOf(temp));
         textViews.get(1).setText(cuaca);
         textViews.get(2).setText(tempat);
         textViews.get(3).setText(country);
+    }
+
+    private void getData() {
+        if (
+                getIntent().hasExtra("temp") &&
+                        getIntent().hasExtra("cuaca") &&
+                        getIntent().hasExtra("tempat") &&
+                        getIntent().hasExtra("country")
+        ) {
+            Log.d("Cek data", "Data isseo");
+            temp = getIntent().getDoubleExtra("temp", 0);
+            cuaca = getIntent().getStringExtra("cuaca");
+            tempat = getIntent().getStringExtra("tempat");
+            country = getIntent().getStringExtra("country");
+        } else {
+            Log.d("Cek data", "Gagal");
+        }
     }
 }

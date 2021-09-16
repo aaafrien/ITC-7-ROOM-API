@@ -13,8 +13,13 @@ import android.widget.Button;
 import com.itc.weatherapi.database.Dao;
 import com.itc.weatherapi.database.Database;
 import com.itc.weatherapi.database.Entity;
+import com.itc.weatherapi.model.Clouds;
+import com.itc.weatherapi.model.Coord;
 import com.itc.weatherapi.model.ListItem;
+import com.itc.weatherapi.model.Main;
+import com.itc.weatherapi.model.Sys;
 import com.itc.weatherapi.model.WeatherItem;
+import com.itc.weatherapi.model.Wind;
 import com.itc.weatherapi.service.WeatherListener;
 import com.itc.weatherapi.service.WeatherService;
 
@@ -47,6 +52,11 @@ public class MainActivity extends AppCompatActivity {
         public void onSuccess(List<ListItem> items) {
             boolean check;
 
+            Main main = new Main();
+            main = items.get(0).getMain();
+            Sys sys = new Sys();
+            sys = items.get(0).getSys();
+
             Database databaseRoom = Database.getInstance(getApplication());
             Dao dao = databaseRoom.dao();
 
@@ -58,14 +68,8 @@ public class MainActivity extends AppCompatActivity {
                 Entity entity = new Entity(
                         items.get(i).getId(),
                         items.get(i).getName(),
-                        String.valueOf(items.get(i).getCoord()),
-                        String.valueOf(items.get(i).getMain()),
-                        items.get(i).getDt(),
-                        String.valueOf(items.get(i).getWind()),
-                        String.valueOf(items.get(i).getSys()),
-                        String.valueOf(items.get(i).getRain()),
-                        String.valueOf(items.get(i).getSnow()),
-                        String.valueOf(items.get(i).getClouds()),
+                        main.getTemp(),
+                        String.valueOf(sys.getCountry()),
                         String.valueOf(items.get(i).getWeather())
                 );
                 if (check) dao.insert(entity);

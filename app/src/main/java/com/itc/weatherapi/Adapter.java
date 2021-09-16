@@ -64,14 +64,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
                     Intent pindah = new Intent(context, WeatherDetail.class);
                     pindah.putExtra("id", entity.getId());
                     pindah.putExtra("nama", entity.getNama());
-                    pindah.putExtra("coord", entity.getCoord());
                     pindah.putExtra("main", entity.getMain());
-                    pindah.putExtra("dt", entity.getDt());
-                    pindah.putExtra("wind", entity.getWind());
                     pindah.putExtra("sys", entity.getSys());
-                    pindah.putExtra("rain", entity.getRain());
-                    pindah.putExtra("snow", entity.getSnow());
-                    pindah.putExtra("clouds", entity.getClouds());
                     pindah.putExtra("weather", entity.getWeather());
                     context.startActivity(pindah);
                 }
