@@ -23,6 +23,8 @@ import com.itc.weatherapi.model.Wind;
 import com.itc.weatherapi.service.WeatherListener;
 import com.itc.weatherapi.service.WeatherService;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -52,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         public void onSuccess(List<ListItem> items) {
             boolean check;
 
-            WeatherItem weatherItem = new WeatherItem();
+            ArrayList<WeatherItem> weatherItem = new ArrayList<>();
             Main main = new Main();
             Sys sys = new Sys();
 
@@ -64,14 +66,14 @@ public class MainActivity extends AppCompatActivity {
             if (dao.getAllData().isEmpty()) check=true;
             else check=false;
             for (int i = 0; i < items.size(); i++) {
-                weatherItem = items.get(i).getWeather().get(i);
+                weatherItem.add(items.get(i).getWeather();
                 main = items.get(i).getMain();
                 sys = items.get(i).getSys();
 
                 Entity entity = new Entity(
                         items.get(i).getId(),
                         main.getTemp(),
-                        weatherItem.getMain(),
+                        weatherItem.get(i).getMain(),
                         items.get(i).getName(),
                         sys.getCountry()
                 );
