@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         public void onSuccess(List<ListItem> items) {
             boolean check;
 
-            ArrayList<WeatherItem> weatherItem = new ArrayList<>();
+            WeatherItem weatherItem = new WeatherItem();
             Main main = new Main();
             Sys sys = new Sys();
 
@@ -66,14 +66,14 @@ public class MainActivity extends AppCompatActivity {
             if (dao.getAllData().isEmpty()) check=true;
             else check=false;
             for (int i = 0; i < items.size(); i++) {
-                weatherItem.add(items.get(i).getWeather();
+                weatherItem = items.get(i).getWeather().get(0);
                 main = items.get(i).getMain();
                 sys = items.get(i).getSys();
 
                 Entity entity = new Entity(
                         items.get(i).getId(),
                         main.getTemp(),
-                        weatherItem.get(i).getMain(),
+                        weatherItem.getMain(),
                         items.get(i).getName(),
                         sys.getCountry()
                 );
