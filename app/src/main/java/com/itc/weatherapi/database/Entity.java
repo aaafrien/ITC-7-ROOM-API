@@ -12,48 +12,47 @@ public class Entity {
 
     @PrimaryKey()
     private int id;
-    @ColumnInfo(name = "nama")
-    private String nama;
     @ColumnInfo(name = "main")
     private Double main;
-    @ColumnInfo(name = "sys")
-    private String sys;
     @ColumnInfo(name = "weather")
     private String weather;
+    @ColumnInfo(name = "nama")
+    private String nama;
+    @ColumnInfo(name = "sys")
+    private String sys;
 
     public int getId() {
         return id;
-    }
-
-    public String getNama() {
-        return nama;
     }
 
     public Double getMain() {
         return main;
     }
 
-    public String getSys() {
-        return sys;
-    }
-
     public String getWeather() {
         return weather;
     }
 
-    public Entity(int id, String nama, Double main, String sys, String weather) {
-        this.id = id;
-        this.nama = nama;
-        this.main = main;
-        this.sys = sys;
-        this.weather = weather;
+    public String getNama() {
+        return nama;
     }
 
-    @Ignore
-    public Entity(String nama, Double main, String sys, String weather) {
-        this.nama = nama;
+    public String getSys() {
+        return sys;
+    }
+
+    public Entity(int id, Double main, String weather, String nama, String sys) {
+        this.id = id;
         this.main = main;
-        this.sys = sys;
         this.weather = weather;
+        this.nama = nama;
+        this.sys = sys;
+    }
+    @Ignore
+    public Entity(Double main, String weather, String nama, String sys) {
+        this.main = main;
+        this.weather = weather;
+        this.nama = nama;
+        this.sys = sys;
     }
 }

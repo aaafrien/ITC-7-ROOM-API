@@ -17,6 +17,7 @@ public class WeatherDetail extends AppCompatActivity {
             R.id.tv_country
     };
 
+    int id;
     Double temp;
     String cuaca, tempat, country;
 
@@ -41,12 +42,14 @@ public class WeatherDetail extends AppCompatActivity {
 
     private void getData() {
         if (
-                getIntent().hasExtra("temp") &&
+                getIntent().hasExtra("id") &&
+                        getIntent().hasExtra("temp") &&
                         getIntent().hasExtra("cuaca") &&
                         getIntent().hasExtra("tempat") &&
                         getIntent().hasExtra("country")
         ) {
             Log.d("Cek data", "Data isseo");
+            id = getIntent().getIntExtra("id",0);
             temp = getIntent().getDoubleExtra("temp", 0);
             cuaca = getIntent().getStringExtra("cuaca");
             tempat = getIntent().getStringExtra("tempat");

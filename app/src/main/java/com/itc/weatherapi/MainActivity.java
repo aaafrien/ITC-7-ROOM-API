@@ -52,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
         public void onSuccess(List<ListItem> items) {
             boolean check;
 
+            WeatherItem weatherItem = new WeatherItem();
+            weatherItem = items.get(0).getWeather().get(0);
             Main main = new Main();
             main = items.get(0).getMain();
             Sys sys = new Sys();
@@ -67,10 +69,10 @@ public class MainActivity extends AppCompatActivity {
             for (int i = 0; i < items.size(); i++) {
                 Entity entity = new Entity(
                         items.get(i).getId(),
-                        items.get(i).getName(),
                         main.getTemp(),
-                        String.valueOf(sys.getCountry()),
-                        String.valueOf(items.get(i).getWeather())
+                        weatherItem.getMain(),
+                        items.get(i).getName(),
+                        String.valueOf(sys.getCountry())
                 );
                 if (check) dao.insert(entity);
                 else dao.update(entity);

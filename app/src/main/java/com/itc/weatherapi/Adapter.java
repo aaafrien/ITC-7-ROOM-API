@@ -2,6 +2,7 @@ package com.itc.weatherapi;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.itc.weatherapi.database.Entity;
+import com.itc.weatherapi.model.Main;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -63,10 +65,10 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
                 public void onClick(View v) {
                     Intent pindah = new Intent(context, WeatherDetail.class);
                     pindah.putExtra("id", entity.getId());
-                    pindah.putExtra("nama", entity.getNama());
-                    pindah.putExtra("main", entity.getMain());
-                    pindah.putExtra("sys", entity.getSys());
-                    pindah.putExtra("weather", entity.getWeather());
+                    pindah.putExtra("temp", entity.getMain());
+                    pindah.putExtra("cuaca", entity.getWeather());
+                    pindah.putExtra("tempat", entity.getNama());
+                    pindah.putExtra("country", entity.getSys());
                     context.startActivity(pindah);
                 }
             });
