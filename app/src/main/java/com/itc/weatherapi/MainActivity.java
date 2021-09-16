@@ -53,11 +53,8 @@ public class MainActivity extends AppCompatActivity {
             boolean check;
 
             WeatherItem weatherItem = new WeatherItem();
-            weatherItem = items.get(0).getWeather().get(0);
             Main main = new Main();
-            main = items.get(0).getMain();
             Sys sys = new Sys();
-            sys = items.get(0).getSys();
 
             Database databaseRoom = Database.getInstance(getApplication());
             Dao dao = databaseRoom.dao();
@@ -67,12 +64,16 @@ public class MainActivity extends AppCompatActivity {
             if (dao.getAllData().isEmpty()) check=true;
             else check=false;
             for (int i = 0; i < items.size(); i++) {
+                weatherItem = items.get(i).getWeather().get(i);
+                main = items.get(i).getMain();
+                sys = items.get(i).getSys();
+
                 Entity entity = new Entity(
                         items.get(i).getId(),
                         main.getTemp(),
                         weatherItem.getMain(),
                         items.get(i).getName(),
-                        String.valueOf(sys.getCountry())
+                        sys.getCountry()
                 );
                 if (check) dao.insert(entity);
                 else dao.update(entity);
